@@ -37,5 +37,27 @@ angular.module('myApp')
 
         };
 
+        self.loadCalendar = function () {
+            var defer = $q.defer();
+            gapi.client.load('calendar', 'v3', function (res) {
+                var request = gapi.client.calendar.events.list({
+                    'calendarId': 'primary',
+                    'timeMin': (new Date()).toISOString(),
+                    'showDeleted': false,
+                    'singleEvents': true,
+                    'maxResults': 10,
+                    'orderBy': 'startTime'
+                });
+
+                request.execute(function (resp) {
+                    defer.resolve(resp);
+                });
+            }, function (res) {
+                defer.reject(res);
+            });
+
+            return defer.promise;
+        }
+
 
     }]);

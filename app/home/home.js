@@ -15,7 +15,7 @@ angular.module('myApp.home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeCtrl', ['authentication', function (authentication) {
+    .controller('HomeCtrl', ['authentication', '$location', function (authentication, $location) {
         var self = this;
 // Your Client ID can be retrieved from your project in the Google
         // Developer Console, https://console.developers.google.com
@@ -52,7 +52,8 @@ angular.module('myApp.home', ['ngRoute'])
                 // Hide auth UI, then load client library.
                 self.isDataAvl = false;
                 // authorizeDiv.style.display = 'none';
-                loadCalendarApi();
+                $location.path("/calendar");
+                // loadCalendarApi();
             } else {
                 // Show auth UI, allowing the user to initiate authorization by
                 // clicking authorize button.
