@@ -6,11 +6,16 @@ angular.module('myApp.view1', ['ngRoute'])
         $routeProvider.when('/view1', {
             templateUrl: 'view1/view1.html',
             controller: 'View1Ctrl',
-            controllerAs: 'calendar'
+            controllerAs: 'calendar',
+            resolve: {
+                authentication: ['calendarService', function (calendarService) {
+                    return calendarService.authenticateApp();
+                }]
+            }
         });
     }])
 
-    .controller('View1Ctrl', [function () {
+    .controller('View1Ctrl', ['authentication', function (authentication) {
         var self = this;
 // Your Client ID can be retrieved from your project in the Google
         // Developer Console, https://console.developers.google.com
@@ -22,6 +27,11 @@ angular.module('myApp.view1', ['ngRoute'])
         /**
          * Check if current user has authorized this application.
          */
+        function init() {
+            handleAuthResult(authentication);
+        }
+
+        init();
         function checkAuth() {
             gapi.auth.authorize(
                 {
@@ -120,5 +130,5 @@ angular.module('myApp.view1', ['ngRoute'])
              pre.appendChild(textContent);*/
         }
 
-        checkAuth();
+        // checkAuth();
     }]);

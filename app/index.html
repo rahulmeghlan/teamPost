@@ -15,13 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css"/>
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
 <ul class="menu">
     <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
+    <li><a href="#!/calendar">view2</a></li>
 </ul>
 
 <!--[if lt IE 7]>
@@ -38,13 +39,15 @@
 -->
 <script src="https://apis.google.com/js/client.js?onload=checkAuth">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
-<script src="view2/view2.js"></script>
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
+<script src="view1/CalendarService.js"></script>
+<script src="calendar/calendarController.js"></script>
+<script src="components/directive/calendarDirective.js"></script>
 </body>
 </html>
