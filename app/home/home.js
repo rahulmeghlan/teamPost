@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.home', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view1', {
-            templateUrl: 'view1/view1.html',
-            controller: 'View1Ctrl',
+        $routeProvider.when('/home', {
+            templateUrl: 'home/home.html',
+            controller: 'HomeCtrl',
             controllerAs: 'calendar',
             resolve: {
                 authentication: ['calendarService', function (calendarService) {
@@ -15,7 +15,7 @@ angular.module('myApp.view1', ['ngRoute'])
         });
     }])
 
-    .controller('View1Ctrl', ['authentication', function (authentication) {
+    .controller('HomeCtrl', ['authentication', function (authentication) {
         var self = this;
 // Your Client ID can be retrieved from your project in the Google
         // Developer Console, https://console.developers.google.com

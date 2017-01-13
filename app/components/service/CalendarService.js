@@ -1,7 +1,7 @@
 /**
  * Created by rahul.meghlan on 1/11/2017.
  */
-angular.module('myApp.view1')
+angular.module('myApp')
     .service('calendarService', ['$q', function ($q) {
         var self = this;
 

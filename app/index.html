@@ -20,10 +20,6 @@
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/calendar">view2</a></li>
-</ul>
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -32,7 +28,6 @@
 
 <div ng-view></div>
 
-<div>Angular seed app: v<span app-version></span></div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -45,8 +40,8 @@
 <script src="bower_components/moment/moment.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 <script src="app.js"></script>
-<script src="view1/view1.js"></script>
-<script src="view1/CalendarService.js"></script>
+<script src="components/service/CalendarService.js"></script>
+<script src="home/home.js"></script>
 <script src="calendar/calendarController.js"></script>
 <script src="components/directive/calendarDirective.js"></script>
 </body>
