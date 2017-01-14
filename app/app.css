@@ -1,25 +1,49 @@
 /* app css stylesheet */
 
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
 }
 
 .menu:before {
-  content: "[";
+    content: "[";
 }
 
 .menu:after {
-  content: "]";
+    content: "]";
 }
 
 .menu > li {
-  display: inline;
+    display: inline;
 }
 
 .menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+    content: "|";
+    padding-right: 0.3em;
+}
+
+h5 {
+    background-color: #ebeff2;
+    padding: 10px;
+    margin: 0;
+}
+
+.cont {
+    background-color: #222222;
+}
+
+.input-cont {
+    padding: 20px 10px;
+    margin-bottom: 30px;
+}
+
+.input-cont form > * {
+    margin-bottom: 10px;
+}
+
+.calendar-cont{
+    background-color: #fff;
+    padding-top: 20px;
 }

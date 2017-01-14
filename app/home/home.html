@@ -1,7 +1,9 @@
-<div id="authorize-div" ng-show="calendar.isDataAvl">
-    <span>Authorize access to Google Calendar API</span>
-    <!--Button for the user to click to initiate auth sequence -->
-    <button id="authorize-button" ng-click="calendar.handleAuthClick(event)">
-        Authorize
-    </button>
+<div class="jumbotron">
+    <div id="authorize-div" ng-show="calendar.isDataAvl">
+        <p>Please Login to continue...</p>
+        <!--Button for the user to click to initiate auth sequence -->
+        <button id="authorize-button" ng-click="calendar.handleAuthClick(event)">
+            Authorize
+        </button>
+    </div>
 </div>

@@ -1,1 +1,16 @@
-<calendar events="calendarData.items"></calendar>
+<h5>Choose Available Times</h5>
+<div class="cont clearfix">
+    <div class="col-md-3 input-cont">
+        <form ng-submit="calendarData.submitForm()">
+            <input type="text" class="form-control" placeholder="Title" ng-model="calendarData.title">
+            <input type="text" class="form-control" placeholder="Location" ng-model="calendarData.location">
+            <textarea class="form-control" ng-model="calendarData.desc" placeholder="Description">
+            </textarea>
+            <input type="submit" class="form-control btn btn-primary" value="Insert Invite">
+            <input type="reset" class="form-control btn btn-default" value="Cancel">
+        </form>
+    </div>
+    <div class="col-md-9 calendar-cont">
+        <calendar events="calendarData.items"></calendar>
+    </div>
+</div>
