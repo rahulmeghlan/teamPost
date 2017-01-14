@@ -26,7 +26,20 @@ angular.module('myApp')
                         });
                     });
                 }
-                console.log(scope.events);
+                obj.selectable = true;
+                obj.select = function (start, end) {
+                    var title = prompt('Event Title:');
+                    var eventData;
+                    if (title) {
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    elem.fullCalendar('unselect');
+                };
                 elem.fullCalendar(obj);
             }
         }

@@ -8,7 +8,7 @@ angular.module('myApp')
         self.authenticateApp = function () {
             var defer = $q.defer(),
                 CLIENT_ID = '766347875707-4vk7ptblonptn2a4ml6797g9o7cd9cdl.apps.googleusercontent.com',
-                SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+                SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
             checkAndAuthenticateGALoad();
 

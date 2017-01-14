@@ -11,6 +11,7 @@
     "angular-loader": "~1.5.0",
     "angular-mocks": "~1.5.0",
     "html5-boilerplate": "^5.3.0",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "moment-timezone": "^0.5.11"
   }
 }
