@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .directive('calendar', ['calendarService', function (calendarService) {
+    .directive('calendar', [function () {
         return {
             restrict: "E",
             scope: {
@@ -32,13 +32,16 @@ angular.module('myApp')
                     var eventData;
                     if (title) {
                         eventData = {
-                            title: title,
                             start: start,
                             end: end
                         };
-                        setEvent(eventData, function () {
-                            elem.fullCalendar('renderEvent', eventData, true); // stick? = true
-                        });
+                        scope.$parent.calendarData.inviteInProgress = true;
+                        scope.$parent.$digest();
+                        elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+
+                        /*setEvent(eventData, function () {
+                         elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                         });*/
                     }
                     elem.fullCalendar('unselect');
                 };

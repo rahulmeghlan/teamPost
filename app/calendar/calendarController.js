@@ -21,6 +21,7 @@ angular.module('myApp.calendarView', ['ngRoute'])
 
         function init() {
             self.items = calendarData.items;
+            self.inviteInProgress = false;
         }
 
         init();

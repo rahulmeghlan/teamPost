@@ -11,6 +11,14 @@
         </form>
     </div>
     <div class="col-md-9 calendar-cont">
+        <div class="invite-in-progress" ng-show="calendarData.inviteInProgress">
+            <div class="cssload-thecube">
+                <div class="cssload-cube cssload-c1"></div>
+                <div class="cssload-cube cssload-c2"></div>
+                <div class="cssload-cube cssload-c4"></div>
+                <div class="cssload-cube cssload-c3"></div>
+            </div>
+        </div>
         <calendar events="calendarData.items"></calendar>
     </div>
 </div>
