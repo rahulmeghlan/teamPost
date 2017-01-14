@@ -21,7 +21,6 @@ angular.module('myApp.calendarView', ['ngRoute'])
 
         function init() {
             self.items = calendarData.items;
-            console.log(calendarData);
         }
 
         init();

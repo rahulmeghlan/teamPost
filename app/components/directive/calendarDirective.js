@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .directive('calendar', [function () {
+    .directive('calendar', ['calendarService', function (calendarService) {
         return {
             restrict: "E",
             scope: {
@@ -28,7 +28,7 @@ angular.module('myApp')
                 }
                 obj.selectable = true;
                 obj.select = function (start, end) {
-                    var title = prompt('Event Title:');
+                    var title = "Test";
                     var eventData;
                     if (title) {
                         eventData = {
@@ -36,11 +36,37 @@ angular.module('myApp')
                             start: start,
                             end: end
                         };
-                        elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                        setEvent(eventData, function () {
+                            elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                        });
                     }
                     elem.fullCalendar('unselect');
                 };
                 elem.fullCalendar(obj);
+
+                function setEvent(data, cb) {
+                    var event = {
+                        summary: data.title,
+                        start: {
+                            dateTime: data.start.get(),
+                            timeZone: moment.tz.guess()
+                        },
+                        end: {
+                            dateTime: data.end.get(),
+                            timeZone: moment.tz.guess()
+                        }
+                    };
+
+                    var request = gapi.client.calendar.events.insert({
+                        calendarId: 'primary',
+                        resource: event
+                    });
+
+                    request.execute(function (evt) {
+                        cb();
+                        console.log(evt.htmlLink);
+                    })
+                }
             }
         }
     }]);
