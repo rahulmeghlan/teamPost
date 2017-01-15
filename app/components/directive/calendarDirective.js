@@ -33,18 +33,15 @@ angular.module('myApp')
                 }
                 obj.selectable = true;
                 obj.select = function (start, end) {
-                    var title = "Test";
-                    if (title) {
-                        eventData = {
-                            start: start,
-                            end: end
-                        };
-                        elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                    eventData = {
+                        start: start,
+                        end: end
+                    };
+                    elem.fullCalendar('renderEvent', eventData, true); // stick? = true
 
-                        /*setEvent(eventData, function () {
-                         elem.fullCalendar('renderEvent', eventData, true); // stick? = true
-                         });*/
-                    }
+                    /*setEvent(eventData, function () {
+                     elem.fullCalendar('renderEvent', eventData, true); // stick? = true
+                     });*/
                     elem.fullCalendar('unselect');
                 };
                 elem.fullCalendar(obj);
