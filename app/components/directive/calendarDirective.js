@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .directive('calendar', [function () {
+    .directive('calendar', ['$location', function ($location) {
         return {
             restrict: "E",
             scope: {
@@ -9,13 +9,18 @@ angular.module('myApp')
             },
             link: function (scope, elem, attr) {
                 var obj = {
-                    defaultView: 'agendaWeek',
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    }
-                };
+                        defaultView: 'agendaWeek',
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay'
+                        }
+                    },
+                    eventData = {};
+                if (typeof scope.events === "undefined") {
+                    $location.path("/home");
+                    return;
+                }
                 if (scope.events.length) {
                     obj.events = [];
                     angular.forEach(scope.events, function (val, index) {
@@ -29,14 +34,11 @@ angular.module('myApp')
                 obj.selectable = true;
                 obj.select = function (start, end) {
                     var title = "Test";
-                    var eventData;
                     if (title) {
                         eventData = {
                             start: start,
                             end: end
                         };
-                        scope.$parent.calendarData.inviteInProgress = true;
-                        scope.$parent.$digest();
                         elem.fullCalendar('renderEvent', eventData, true); // stick? = true
 
                         /*setEvent(eventData, function () {
@@ -47,27 +49,31 @@ angular.module('myApp')
                 };
                 elem.fullCalendar(obj);
 
-                function setEvent(data, cb) {
-                    var event = {
-                        summary: data.title,
-                        start: {
-                            dateTime: data.start.get(),
-                            timeZone: moment.tz.guess()
-                        },
-                        end: {
-                            dateTime: data.end.get(),
-                            timeZone: moment.tz.guess()
-                        }
-                    };
+                function bindEvent() {
+                    scope.$on("sendInvite", function (evt, data) {
+                        setEvent(data);
+                    });
+                }
 
+                bindEvent();
+
+                function setEvent(data, cb) {
+                    angular.extend(eventData, data);
+                    eventData.start = {
+                        dateTime: eventData.start.get(),
+                        timeZone: moment.tz.guess()
+                    };
+                    eventData.end = {
+                        dateTime: eventData.end.get(),
+                        timeZone: moment.tz.guess()
+                    };
                     var request = gapi.client.calendar.events.insert({
                         calendarId: 'primary',
-                        resource: event
+                        resource: eventData
                     });
 
-                    request.execute(function (evt) {
-                        cb();
-                        console.log(evt.htmlLink);
+                    request.execute(function (res) {
+                        alert(res.status === "confirmed" ? "Event Updated Successfully" : "Some error occurred");
                     })
                 }
             }

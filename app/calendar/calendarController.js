@@ -15,7 +15,7 @@ angular.module('myApp.calendarView', ['ngRoute'])
         });
     }])
 
-    .controller('calendar', ['calendarData', function (calendarData) {
+    .controller('calendar', ['calendarData', '$scope', '$rootScope', function (calendarData, $scope, $rootScope) {
 
         var self = this;
 
@@ -23,6 +23,15 @@ angular.module('myApp.calendarView', ['ngRoute'])
             self.items = calendarData.items;
             self.inviteInProgress = false;
         }
+
+        self.submitForm = function () {
+            var evt = $scope.$broadcast("sendInvite", {
+                summary: self.title,
+                location: self.location,
+                description: self.desc
+            });
+            $scope.$on("destroy", evt);
+        };
 
         init();
     }]);
